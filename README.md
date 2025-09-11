@@ -1,12 +1,10 @@
 # Generating of sentences embeddings  
-To run the program with default values:
-
+To run a program with sample sentences and the current directory to save:
 ```bash
 python GenAI-1-30.py
 ```
 
 To run the program with castom parameters:
-
 ```bash
 python GenAI-1-30.py -s <sentences-file-path> -o <output-dir>
 ```
