@@ -1,7 +1,6 @@
-# Prepare the environment:  
+# Prepare the environment: 
+Clone the repository and switch to the current branch, than:  
 ```bash
-git clone https://github.com/asanaaa/AI-based-development.git
-cd AI-based-development
 uv venv --python 3.13
 uv pip install -e .
 ```
