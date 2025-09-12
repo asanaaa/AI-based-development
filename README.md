@@ -1,3 +1,18 @@
+# Prepare the environment:  
+```bash
+git clone https://github.com/asanaaa/AI-based-development.git
+cd AI-based-development
+uv pip install -e .
+```
+### Activate the environment:
+Linux:  
+```bash
+source .venv/bin/activate
+```  
+Windows:  
+```bash
+.venv\Scripts\activate
+```
 # Generating of sentences embeddings  
 To run a program with sample sentences and the current directory to save:
 ```bash

@@ -1,0 +1,11 @@
+[project]
+name = "sentence-embeddings"
+version = "0.1.0"
+description = "Generating of sentences embeddings"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.10.6",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "sentence-transformers>=5.1.0",
+]
