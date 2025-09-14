@@ -1,5 +1,6 @@
 # Prepare the environment: 
-Clone the repository and switch to the current branch, than:  
+Clone the repository and switch to the current branch.  
+## Create the environment:
 ```bash
 uv venv --python 3.13
 uv pip install -e .
@@ -13,6 +14,10 @@ Windows:
 ```bash
 .venv\Scripts\activate
 ```
+##  Or install the requirements in your global env:
+```bash
+pip install -r requirements.txt
+```  
 # Generating of sentences embeddings  
 To run a program with sample sentences and the current directory to save:
 ```bash
