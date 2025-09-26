@@ -1,0 +1,10 @@
+[project]
+name = "Defect detection"
+version = "0.1.0"
+description = "Finds a scratch on a coin by comparing it with a reference"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.3.3",
+    "opencv-python>=4.11.0.86",
+]
