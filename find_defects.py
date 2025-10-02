@@ -34,6 +34,35 @@ class CoinDefectDetector:
         contours, _ = cv2.findContours(image=edges, mode=cv2.RETR_EXTERNAL, method=cv2.CHAIN_APPROX_SIMPLE)
         return contours
     
+    def _max_diff(self, images: List[np.ndarray], reference_index: int):
+        """
+        Find image with maximum difference from reference.
+        
+        Args:
+            images (List[np.array]): List of images
+            reference_index (int): Index of reference image without defects
+            
+        Returns:
+            int: Index or anomaly image
+            numpy.uint64: Maximum difference value
+            np.ndarray: Difference
+        """
+        reference = images[reference_index]
+        max_diff = 0
+        anomaly_index = reference_index
+        
+        for i, image in enumerate(images):
+            if i == reference_index:
+                continue
+            diff = cv2.absdiff(src1=reference, src2=image)
+            total_diff = np.sum(a=diff)
+            
+            if total_diff > max_diff:
+                max_diff = total_diff
+                anomaly_index = i
+                
+        return anomaly_index, max_diff, diff
+    
     def detect_defects(self, image_paths: List[str], reference_index: int = 0) -> dict:
         """
         Detect defects in coin images.
@@ -43,7 +72,7 @@ class CoinDefectDetector:
             reference_index (int): Index of reference image without defects
             
         Returns:
-            Dictionary with results
+            Dict: Dictionary with results
         """
         if len(image_paths) < 2:
             raise ValueError("Need at least 2 images for comparison")
@@ -58,20 +87,7 @@ class CoinDefectDetector:
             images.append(image)
             
         # Find anomaly by maximum difference from reference
-        reference = images[reference_index]
-        max_diff = 0
-        anomaly_index = reference_index
-        
-        for i, image in enumerate(images):
-            if i == reference_index:
-                continue
-            diff = cv2.absdiff(src1=reference, src2=image)
-            total_diff = np.sum(a=diff)
-            
-            if total_diff > max_diff:
-                max_diff = total_diff
-                anomaly_index = i
-
+        anomaly_index, max_diff, diff = self._max_diff(images=images, reference_index=reference_index)
         if max_diff <= self.low_threshold:
             return {
                 'success': False
