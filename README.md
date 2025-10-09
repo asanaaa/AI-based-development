@@ -2,6 +2,7 @@
 Clone the repository and switch to the current branch.  
 ## Create the environment:
 ```bash
+git submodule update --init --recursive
 uv venv --python 3.13
 uv pip install -r perspective_correction/requirements.txt
 ```
